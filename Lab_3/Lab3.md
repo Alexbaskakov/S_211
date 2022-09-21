@@ -2,16 +2,16 @@
 В этой лабораторной работе вы будете использовать те же маршрутизаторы, коммутаторы, хосты и протоколы динамической маршрутизации, с которыми вы уже знакомы. Но вместо реализации подсетей с заданными параметрами, вы создадите свои собственные.
 ## Проектирование сети.
 Топология вашей сети должна соответствовать этому проекту:
-![https://cyberlab.pacific.edu/images/9/4/5/a/3/945a3442757e4a644b42b467d03cbb3ff61cdd6a-network-05.png]()
+![](https://cyberlab.pacific.edu/images/9/4/5/a/3/945a3442757e4a644b42b467d03cbb3ff61cdd6a-network-05.png)
 Рисунок 1 - Топология сети.
 Однако, перед непосредственной работой в GNS3, вы должны сначала завершить проектирование сети, заполнив следующую таблицу:
 Таблица 1. Подсети:
 | Номер подсети | Адрес подсети a.b.c.d/n | Маска | Кол-во адресов | Первый IP, адрес хоста, пригодный для использования | Последний IP |
-| _____________ | _______________________ | _____ | ______________ | ___________________________________________________ | ____________ |
-| 1             | _______________________ | _____ | ______________ | ___________________________________________________ | ____________ |
-| 2             | _______________________ | _____ | ______________ | ___________________________________________________ | ____________ |
-| 3             | _______________________ | _____ | ______________ | ___________________________________________________ | ____________ |
-| 4             | _______________________ | _____ | ______________ | ___________________________________________________ | ____________ |
+| --- | --- | --- | --- | --- | --- |
+| 1 |  |  |  |  |  |
+| 2 |  |  |  |  |  |
+| 3 |  |  |  |  |  |
+| 4 |  |  |  |  |  |
 Вы можете выбрать адреса подсети по своему усмотрению со следующими ограничениями:
 1.	Все подсети должны находиться в диапазонах частных IP-адресов. Использование общедоступных IP-адресов в локальной сети считается «плохой практикой».
 2.	Подсеть 1 должна быть сетью / 25 - она относительно мала.
@@ -19,21 +19,24 @@
 4.	Подсеть 3 должна быть сетью / 21 - она намного больше.
 5.	Подсеть 4 должна быть сетью / 30 - она маленькая и соединяет только два маршрутизатора вместе.
 6.	По требованиям «хорошей практики» Вы должны назначить IP-адреса шлюза по умолчанию либо как самый низкий используемый адрес хоста, либо как самый высокий используемый адрес хоста в подсети. (За исключением подсети 4, где каждый хост является маршрутизатором).
+
 ### Примечание: В Интернете доступно множество калькуляторов подсетей. Как и с любым калькулятором, важно уметь им пользоваться.
-###Замечания:
+### Замечания:
 -	В адресе вашей подсети должны быть нули для битов идентификатора хоста. Например, `192.168.10.0/24` (все младшие 8 бит нулевые).
 -	Адрес вашей маски подсети в бинарном виде должна быть разбита в группы по 8. Например: `11111111.11111111.11111111.00000000`
 -	Количество IP-адресов в подсети должно включать первый и последний адрес (с идентификатором хоста, состоящим из всех 0 и всех единиц соответственно).
+
 Таблица 2. Адреса хостов:
 | Хост | IP адрес | Адрес подсети a.b.c.d/n |
-| ____ | ________ | _______________________ |
-| PC1  | ________ | _______________________ |
-| PC2  | ________ | _______________________ |
-| PC3  | ________ | _______________________ |
-| R1 interface1 | ___ | ___________________ |
-| R2 interface1 | ___ | ___________________ |
-| R2 interface2 | ___ | ___________________ |
-| R3 interface3 | ___ | ___________________ |
+| --- | --- | --- |
+| PC1  |  |  |
+| PC2  |  |  |
+| PC3  |  |  |
+| R1 interface1 |  |  |
+| R2 interface1 |  |  |
+| R2 interface2 |  |  |
+| R3 interface3 |  |  |
+
 ### Замечания:
 -	Во избежание лишних проблем, следует сначала настроить маршрутизаторы, а затем ПК в каждой подсети.
 -	Конкретный порт на коммутаторе не имеет значения (до тех пор, пока этого не потребует учебная программа).
@@ -68,7 +71,7 @@ Your network topology should match this design. There are several subnets being 
 - "Internal Servers" - A subnet containing servers that should only be accessible from internal devices
 - "Internal Workstations" - A subnet containing end-user computers (laptops, workstations, etc.) that should only be accessible from internal devices
 # Note that the "servers" shown in the network diagram are just more MikroTik routers being repurposed for a new role. GNS3 is certainly capable of running full virtual machines as part of a simulated network, but it's not worth the effort for this lab.
-![https://cyberlab.pacific.edu/images/8/d/7/9/a/8d79a32bbd8ff639d005d215e4423eaefb8169df-network-08.png]()
+![](https://cyberlab.pacific.edu/images/8/d/7/9/a/8d79a32bbd8ff639d005d215e4423eaefb8169df-network-08.png)
 Network Diagram (Note: Subnet labels and dashed borders are for informational use only)
 
 ## Implementation
@@ -218,4 +221,3 @@ Submit the following items to the assignment:
 6. Provide the command: Let's say there was an SMB (Windows file sharing) server located in Subnet 2. What would be the command(s) to add firewall rule(s) to Router1 that allow workstations in Subnet 5 to access it? You only need to allow the "modern" (Windows 2000 and up) port of 445, not legacy ports.
 7. Provide the command: Let's say you want to allow pings (ICMP, in general) between any devices in subnets 1, 2, 3, and 5 (i.e. excluding the "public Internet" subnet), but don't want to allow any other traffic beyond the rules already added above. What would be the command(s) to add firewall rule(s) to Router1 to enable this? (Tip: You could do this with a number of rules. Or you could do this with a single rule and an address-list. Consult the MikroTik web documentation or the in-router help system by pressing ? at every step of the way while trying to write your command(s). Try pinging before, then enter your rule(s), and verify that pings are now functional.)
 When finished, press the Stop button and exit GNS3. The GNS3 VM (in VMware) should halt and exit automatically.
-
