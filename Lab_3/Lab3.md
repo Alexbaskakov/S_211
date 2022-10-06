@@ -218,7 +218,7 @@ Submit the following items to the assignment:
 2. Provide a screenshot showing the output of ip dhcp-server lease print on DHCPServer
 3. Provide a screenshot showing webterm-public successfully loading the the web server (http://10.0.20.1)
 4. Provide a screenshot showing successful pings from webterm-public to the WebServer, DHCPServer, and webterm-workstation prior to firewall rules being added.
-5. Provide a screenshot showing the output of ip firewall filter print on Router1 after adding the HTTP and DHCP rules.
+5. Provide a screenshot showing the output of `ip firewall filter print` on Router1 after adding the HTTP and DHCP rules.
 6. Provide the command: Let's say there was an SMB (Windows file sharing) server located in Subnet 2. What would be the command(s) to add firewall rule(s) to Router1 that allow workstations in Subnet 5 to access it? You only need to allow the "modern" (Windows 2000 and up) port of 445, not legacy ports.
 7. Provide the command: Let's say you want to allow pings (ICMP, in general) between any devices in subnets 1, 2, 3, and 5 (i.e. excluding the "public Internet" subnet), but don't want to allow any other traffic beyond the rules already added above. What would be the command(s) to add firewall rule(s) to Router1 to enable this? (Tip: You could do this with a number of rules. Or you could do this with a single rule and an address-list. Consult the MikroTik web documentation or the in-router help system by pressing ? at every step of the way while trying to write your command(s). Try pinging before, then enter your rule(s), and verify that pings are now functional.)
 When finished, press the Stop button and exit GNS3. The GNS3 VM (in VMware) should halt and exit automatically.
