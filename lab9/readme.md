@@ -27,8 +27,9 @@ alt="Краткое объяснение SDN" width="240" height="180" border="1
 
 ## Design Network
 Your **final** network topology should match this design.
-Network Diagram
-![](../images/7dd2a76801b90dd0898473c73b4001e8e0c82524-network-12-stage-3.png)
+
+![Network Diagram](images/7dd2a76801b90dd0898473c73b4001e8e0c82524-network-12-stage-3.png)
+
 Lab 9 Network Diagram - Stage 3 (Note: Subnet labels and dashed borders are for informational use only)
 
 References:
@@ -91,7 +92,8 @@ For simplicity, wire up the network in three stages:
 
 Wire **Stage 1** now - the Management network.
 
-![Network Diagram](../images/418652bbba1c6cd606c14f7891db503583c6bfc4-network-12-stage-1.png)
+![Network Diagram](images/418652bbba1c6cd606c14f7891db503583c6bfc4-network-12-stage-1.png)
+
 Lab 9 Network Diagram - Stage 1
 
 ### Configure Open vSwitch
@@ -212,7 +214,8 @@ $ ovs-ofctl dump-flows br0
 # Configure Network - Stage 2
 Wire **Stage 2** of the network now - the VLAN 100 portion connecting the webterms and DHCPServer.
 
-![Network Diagram](../images/afc0385f578eb6c285db5ab674ddea1051442924-network-12-stage-2.png)
+![Network Diagram](images/afc0385f578eb6c285db5ab674ddea1051442924-network-12-stage-2.png)
+
 Lab 9 Network Diagram - Stage 2
 
 Configure the webterms to obtain addresses via DHCP.
@@ -339,7 +342,8 @@ Start the webterm instances and verify that they have IP addresses and can ping 
 # Configure Network - Stage 3
 To complete the network, add in the final VLAN - VLAN 200, referred to with the label "Roar". This VLAN containers one router - `Gateway` - that is used to access the Internet.
 
-![Network Diagram](../images/7dd2a76801b90dd0898473c73b4001e8e0c82524-network-12-stage-3.png)
+![Network Diagram](images/7dd2a76801b90dd0898473c73b4001e8e0c82524-network-12-stage-3.png)
+
 Lab 9 Network Diagram - Stage 3
 
 Add the `Gateway` router and configure it as follows:
