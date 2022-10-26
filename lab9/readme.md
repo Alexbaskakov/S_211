@@ -129,9 +129,17 @@ $ ovs-vsctl set bridge br0 other-config:datapath-id=0000000000000001 \
             -- --if-exists del-port eth0
 ```
 
-> Note 1: Each switch should have a datapath-id that is a **unique** 16 digit hex number. Setting an ID of ...0000**1**, ...0000**2**, ...0000**3** is sufficient.
+> ㅤ
+![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png)
+> Note 1: Each switch should have a datapath-id that is a **unique** 16 digit hex number.
+>  Setting an ID of ...0000**1**, ...0000**2**, ...0000**3** is sufficient.
 
-> Note 2: These commands could all be done separately, but there is an advantage in giving all of the commands to `ovs-vsctl` to be accomplished in a single transaction to avoid the network being incompletely configured between transactions.
+> ㅤ
+>![#f03c15](https://placehold.co/15x15/ff8c00/ff8c00.png)
+> Note 2: These commands could all be done separately, but there is an advantage in giving all of
+>  the commands to `ovs-vsctl` to be accomplished in a single transaction to avoid the network being incompletely
+>  configured between transactions.
+
 
 While on each switch, take a moment to inspect the current configuration. Show information on the br0 bridge:
 
@@ -178,7 +186,8 @@ iface eth0 inet static
 Once the network configuration for the Faucet controller has been set, start the device.
 
 Back on a switch, check to see if there is any sign of communication with the Faucet controller:
-
+> ㅤ
+> ![#1589F0](https://placehold.co/15x15/1589F0/1589F0.png)
 > Note: The DEMO configuration of the Faucet controller will only provide a configuration for the switches with IDs of `0x1` and `0x2`. We'll fix that next by loading a full configuration, but in the meantime, the switch with ID `0x3` won't show as connected or have any flows.
 
 ```bash
