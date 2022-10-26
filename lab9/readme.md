@@ -227,7 +227,7 @@ The goal of Stage 2 is for all the webterms and DHCPServer to function as-if the
 
 First, make a backup of the original configuration file. This is always a good practice when learning a new system:
 
-````bash
+```bash
 $ cp /etc/faucet/faucet.yaml /etc/faucet/faucet.yaml.orig
 ```
 
