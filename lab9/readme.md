@@ -122,7 +122,7 @@ Ensure that the three switches have management IP addresses as follows:
 Once the network configuration for each Open vSwitch has been set, start each device and access its console. For each switch, configure the default br0 bridge (which combines all of the physical network ports) so that it is managed by the Faucet SDN controller, and that the bridge excludes eth0 (which is being used for management and thus is considered "out of band").
 
 ```bash
-$ ovs-vsctl set bridge br0 other-config:datapath-id=0000000000000001 \
+ovs-vsctl set bridge br0 other-config:datapath-id=0000000000000001 \
             -- set bridge br0 fail_mode=secure \
             -- set-controller br0 tcp:172.20.1.254:6653 \
             -- set controller br0 connection-mode=out-of-band \
@@ -144,7 +144,7 @@ $ ovs-vsctl set bridge br0 other-config:datapath-id=0000000000000001 \
 While on each switch, take a moment to inspect the current configuration. Show information on the br0 bridge:
 
 ```bash
-$ ovs-ofctl show br0
+ovs-ofctl show br0
 ```
 
 On the `br0` bridge, observe two things:
@@ -155,7 +155,7 @@ On the `br0` bridge, observe two things:
 Show information on the controller for the `br0` bridge:
 
 ```bash
-$ ovs-vsctl get-controller br0
+ovs-vsctl get-controller br0
 # Should see:
 # tcp:172.20.1.254:6653
 ```
@@ -163,7 +163,7 @@ $ ovs-vsctl get-controller br0
 Show information on current flows tracked by the switch:
 
 ```bash
-$ ovs-ofctl dump-flows br0
+ovs-ofctl dump-flows br0
 # Should see:
 # NXST_FLOW reply (xid=0x4):
 # (No flows, because the controller is not yet active)
