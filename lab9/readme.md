@@ -1,3 +1,5 @@
+# Пока в нерабочем состоянии, переходите к лабораторной 10
+
 # Lab 9 - OpenFlow
 ### Table of contents:
 1. Software Defined Networking
