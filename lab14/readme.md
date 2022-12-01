@@ -478,6 +478,8 @@ ______________________________________
 Пример работы контейнера:
  - В папке `/home/<username>/hello/` находится файл hello.c
  - Запускается разработанный контейнер, основанный на базовом образе [cmake.docker](https://hub.docker.com/r/matrim/cmake-examples/)
+    - Вариант 1: Контейнер копирует файлы из инструкции Dockerfile с использованием конструкции COPY ([пример](https://stackoverflow.com/questions/33377022/how-to-copy-files-from-dockerfile-to-host)) 
+    - Вариант 2: использовать docker cp вне контейнера (пример: `docker cp container-id:/path/filename.txt ~/Desktop/filename.txt`)
  
 Ожидаемый результат:
 - В папке появился файл out.txt с содержимым `hello, linux` (зависит от ОС)
