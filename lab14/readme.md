@@ -452,3 +452,30 @@ RUN apt-get update && apt-get install -y \
 Ключ --volumes позволяет удалить неиспользуемые тома.
 
 
+# Задание 2
+
+Используя команды к предидущим лабораторным работам и описание Dockerfile разработать контейнер, выполняющий компиляцию файла hello.c и запись вывода в текстовый файл, с последующей передачей на хост машину.
+Пример работы контейнера:
+ - В папке /home/<username>/hello/ находится файл hello.c
+ - Запускается разработанный контейнер, основанный на базовом образе [cmake.docker](https://hub.docker.com/r/matrim/cmake-examples/)
+ 
+Ожидаемый результат:
+- В папке появился файл out.txt с содержимым `hello, linux` (зависит от ОС)
+- Контейнер прекращает работу после успешного выполнения задания, `docker ps` не отображает его активным 
+
+Содержимое файла hello.c:
+
+```
+  #include "stdio.h"
+  main () {
+      #if defined(_WIN32)
+          printf("hello, windows\n");
+      #elif defined(__linux__)
+          printf("hello, linux\n");
+      #elif defined(__APPLE__)
+          printf("hello, Apple\n");
+      #elif defined(BSD)
+          printf("hello, BSD\n"); 
+      #endif
+  }
+  ```
