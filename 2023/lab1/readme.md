@@ -1,7 +1,7 @@
 <!---
 
 Спойлер к лабам, можно считать за пасхалку)
-https://risovach.ru/upload/2017/06/mem/podorozhnik_147269240_orig_.jpg
+[https://risovach.ru/upload/2017/06/mem/podorozhnik_147269240_orig_.jpg](http://risovach.ru/upload/2017/06/mem/podorozhnik_147269240_orig_.jpg)
 
 -->
 ## Lab2
