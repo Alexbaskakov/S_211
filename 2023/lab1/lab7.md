@@ -15,6 +15,44 @@
 ![](https://mikrotiklab.ru/wp-content/uploads/2022/07/Wireguard-shema-seti.jpg)
 ## Настройка Office-1
 Открываем меню WireGuard и создаём интерфейс. Имя можно задать какое угодно, в примере указано направление отправки пакетов.
-!()[https://mikrotiklab.ru/wp-content/uploads/2022/07/Sozdanie-pervogo-WireGuard-v-Office-1.png.jpg]
+![](https://mikrotiklab.ru/wp-content/uploads/2022/07/Sozdanie-pervogo-WireGuard-v-Office-1.png.jpg)
 Listen Port можете поменять, а можете оставить по умолчанию. Нажимаем применить и видим наш Private и Public.
-!()[https://mikrotiklab.ru/wp-content/uploads/2022/07/Prosmotr-publichnogo-i-privatnogo-klyucha-WireGuard-1.jpg]
+![](https://mikrotiklab.ru/wp-content/uploads/2022/07/Prosmotr-publichnogo-i-privatnogo-klyucha-WireGuard-1.jpg)
+Далее переходим на вкладку Peers и создаём пира. Нам нужно указать:
+- На каком интерфейсе будет слушаться подключение;
+- Публичный ключ другой стороны;
+- Endpoint – публичный IP партнёра;
+- Endpoint Port – соответственно его порт;
+- Allowed Address – сети и адреса, которым разрешено «бегать» по коридору, т.е. через данный интерфейс.
+![](https://mikrotiklab.ru/wp-content/uploads/2022/07/Sozdanie-peer-v-ofise-1-1.jpg)
+Далеко не отходим, и подключаемся к Office-2. Здесь так же создаём peer с понятным именем в сторону первого офиса.
+![](https://mikrotiklab.ru/wp-content/uploads/2022/07/Sozdanie-vtorogo-WireGuard-v-Office-2.png.jpg)
+Копируем Public Key с Office-2 и возвращаемся в Office-1 и вставляем в настройки пира.
+![](https://mikrotiklab.ru/wp-content/uploads/2022/07/Konfigurirovanie-Public-Key-mezhdu-Mikrotik.jpg)
+На этом же девайсе (Office-1), задаём IP на WireGuard to-Office-2 172.16.30.1 – это адрес внутри VPN сети.
+![](https://mikrotiklab.ru/wp-content/uploads/2022/07/Naznachenie-IP-adresa-na-WireGuard-v-ofise-1.jpg)
+Далее нам нужно создать peer на втором роутере. Копируем публичный ключ первого и переходим к настройке. Все аналогично, но только зеркально.
+![](https://mikrotiklab.ru/wp-content/uploads/2022/07/Konfigurirovanie-shifrovaniya-WireGuard.jpg)
+- Public Key – публичный ключ партнёра, т.е. первого роутера;
+- Его публичный IP и порт;
+- Разрешённые адреса, и сети.
+- Сохраняем, применяем и не забываем назначить туннельный IP на Office-2.
+![](https://mikrotiklab.ru/wp-content/uploads/2022/07/IP-adres-na-WireGuard-v-ofise-2.jpg)
+## Проверка WireGuard
+Запустим ping по туннельным адресам wireguard в направлении друг друга c двух микротиков.
+![](https://mikrotiklab.ru/wp-content/uploads/2022/07/Proverka-rabotosposobnosti-WireGuard.jpg)
+Обратите внимание на интерфейсы, трафик действительно идёт по нужным.
+
+## Маршрутизация
+Остаётся создание маршрутов в соседние сети. Выше мы убедились, что WireGuard работает, остаётся научить наши маршрутизаторы ходить друг к другу.
+
+Создаём маршрут во второй офис на первом mikrotik через раздел routes (а не через wireguard).
+![](https://mikrotiklab.ru/wp-content/uploads/2022/07/Nastraivaem-marshrutizatsiyu-WireGuard.jpg)
+И наоборот, во втором офисе создаём маршрут в первый.
+![](https://mikrotiklab.ru/wp-content/uploads/2022/07/Immediate-Gateway-v-WireGuard.jpg)
+Обратите внимание на Immediate Gateway – после сохранения правила, интерфейс через который доступна сеть, Mikrotik подставит автоматически. Ваша задача проверить, чтобы был выбран верный.
+## Проверка связанности сетей
+Для этого включаем наши виртуальный PCs, проверяем чтобы мы получили адреса корректные и пробуем прошпиговать друг друга.
+![](https://mikrotiklab.ru/wp-content/uploads/2022/07/Site-to-site-VPN-WireGuard.jpg)
+Все прекрасно работает. Далее вы можете ограничивать трафик на уровне фаервола, но в этой работе не требуется таких действий.
+Подытожим, мы настроили WireGuard на двух роутерах MikroTik, объяснили что в данной технологии нет привычной клиент серверной архитектуры, создали маршруты и объединили два офиса (site to site). 
