@@ -93,13 +93,16 @@ import os
 
 > [!WARNING]
 > При возникновении ошибки обновления необходимо поправить файл `/etc/apt/sources.list`, у дистрибутива Debian Buster, на базе которого построен Docker контейнер, закончился срок поддержки и он находится в статусе EndOfLife.
-> Для решения этой проблемы достаточно вписать в вышеуказанный файл следующие строки (или просто их раскоментировать)
-> `deb http://deb.debian.org/debian buster main`
-> `deb http://snapshot.debian.org/archive/debian-security/20200414T000000Z buster/updates main`
-> `deb http://security.debian.org/debian-security buster/updates main`
-> `deb http://snapshot.debian.org/archive/debian/20200414T000000Z buster-updates main`
-> `deb http://deb.debian.org/debian buster-updates main`
 
+```
+deb http://deb.debian.org/debian buster main 
+deb http://snapshot.debian.org/archive/debian-security/20200414T000000Z buster/updates main
+deb http://security.debian.org/debian-security buster/updates main
+deb http://snapshot.debian.org/archive/debian/20200414T000000Z buster-updates main
+deb http://deb.debian.org/debian buster-updates main
+```
+> [!WARNING]
+> Для решения этой проблемы достаточно вписать строки выше в файл `sources.list` (или просто их раскоментировать)
 
 ![](../image/netcat/netcat_10.png)
 
